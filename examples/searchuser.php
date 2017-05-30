@@ -1,8 +1,8 @@
 <?php
 include('../src/musically.php');
-$username = 'JessicaSmith6397';
-$password = 'Password123';
-$searchTerm = 'jacobsartorius';
+$username = '';
+$password = '';
+$searchTerm = '';
 $pageNo = '';
 
 $i = new \MusicallyAPI\Musically();
