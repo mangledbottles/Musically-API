@@ -1,8 +1,8 @@
 <?php
 
 include('../src/musically.php');
-$username = 'JessicaSmith6397';
-$password = 'Password123';
+$username = '';
+$password = '';
 
 $i = new \MusicallyAPI\Musically();
 
@@ -14,6 +14,3 @@ $i = new \MusicallyAPI\Musically();
 	}catch(Exception $e){
 		var_dump($e);
 	}
-// $give->username = $username;
-// $give->password = $password."ASI";
-// var_dump($i->store($give));
