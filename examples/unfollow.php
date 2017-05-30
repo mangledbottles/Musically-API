@@ -1,12 +1,11 @@
 <?php
 include('../src/musically.php');
-$username = 'JessicaSmith6397';
-$password = 'Password123';
-$userId = '63220015033774080';
+$username = '';
+$password = '';
+$userId = '';
 
 $i = new \MusicallyAPI\Musically();
 
-	// var_dump($i->getUserData($username));
 	try{
 		$i->login($username, $password);	
 	}catch (Exception $e){
