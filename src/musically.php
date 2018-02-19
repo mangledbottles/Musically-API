@@ -52,26 +52,27 @@ namespace MusicallyAPI;
 				$result = curl_exec($ch);
 				curl_close ($ch);
 
+            $headers=array();
+            $data=explode("\n", $result);
 
-				$headers=array();
-				$data=explode("\n", $result);
+            $this->store = new \Stdclass();
+            $this->store->username = $username;
+            $this->store->password = $password;
 
-				$this->store = new \Stdclass();
-				$this->store->username = $username;
-				$this->store->password = $password;
+            $dexplore = explode('=', $data[6]);
 
-				$dexplore = explode('=', $data[7]);
-				$this->store->slider_cookie = explode(';', $dexplore[1])[0];
-				$this->store->token_expiration = substr($dexplore[3], 0 , -1);
+            $this->store->slider_cookie = $dexplore[1];
+            $this->store->token_expiration = $dexplore[3];
 
-				$dexplore1 = explode('"', $data[8]);
-				$this->store->authentication_hash = $dexplore1[3];
 
-				if($this->store($this->store)){
-					return $this->Response($data[12]);
-				}else{
-					throw new \Exception($e . $this->Response($data));
-				}
+            $dexplore1 = explode('"', $data[7]);
+            $this->store->authentication_hash = $dexplore1[1];
+
+            if($this->store($this->store)){
+                return $this->Response(explode('=', $data[11])[0]);
+            }else{
+                throw new \Exception($e . $this->Response($data));
+            }
 			}catch(Exception $e){
 				return 'ERROR: '.$e;
 			}
